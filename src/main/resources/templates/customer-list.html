@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer List</title>
+</head>
+<body>
+<h2>Customer List</h2>
+<a href="/customer/create" class="btn btn-primary">Add Customer</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate through the list of customers and display each customer's details -->
+    <tr th:each="customer : ${customerList}">
+        <td th:text="${customer.first_name}">First Name</td>
+        <td th:text="${customer.last_name}">Last Name</td>
+        <td th:text="${customer.address}">Address</td>
+        <td th:text="${customer.city}">City</td>
+        <td th:text="${customer.state}">State</td>
+        <td th:text="${customer.email}">Email</td>
+        <td th:text="${customer.phone}">Phone</td>
+        <td>
+            <!-- Edit button -->
+            <a th:href="@{/customer/edit/{uuid}(uuid=${customer.uuid})}">Edit</a>
+            <!-- Delete button -->
+            <a th:href="@{/customer/delete/{uuid}(uuid=${customer.uuid})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
